@@ -5,7 +5,7 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   usemin = require('gulp-usemin'),
   cssmin = require('gulp-cssmin'),
-  browserSync = require('brower-sync');
+  browserSync = require('browser-sync');
 
 gulp.task('default', ['copy'], function() {
 	gulp.start('build-img', 'usemin');
@@ -38,8 +38,10 @@ gulp.task('usemin', function() {
 
 gulp.task('server', function() {
 	browserSync.init({
-		baseDir: 'src'
+		server: {
+			baseDir: 'src'
+		}
 	});
 
-	gulp.whatch('src/**/*').on('change', browserSync.reload);
+	gulp.watch('src/**/*').on('change', browserSync.reload);
 });
