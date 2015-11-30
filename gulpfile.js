@@ -7,7 +7,7 @@ var gulp = require('gulp'),
   cssmin = require('gulp-cssmin'),
   browserSync = require('browser-sync');
 
-// Função padrão
+// Tarefa padrão
 gulp.task('default', ['copy'], function() {
 	gulp.start('build-img', 'usemin');
 });
