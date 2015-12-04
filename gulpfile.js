@@ -9,7 +9,8 @@ var gulp = require('gulp'),
   jshint = require('gulp-jshint'),
   csslint = require('gulp-csslint'),
   jshintSstylish = require('jshint-stylish'),
-  autoprefixer = require('gulp-autoprefixer');
+  autoprefixer = require('gulp-autoprefixer'),
+  less = require('gulp-less');
  
 // Tarefa padrão
 gulp.task('default', ['copy'], function() {
@@ -67,6 +68,16 @@ gulp.task('server', function() {
 			.pipe(jshint())
 			.pipe(jshint.reporter(jshintSstylish));
 	});
+
+	gulp.watch('src/less/*.less').on('change', function(event) {
+		console.log('Complindo LESS -> Arquivo: ' + event.path)
+		gulp.src(event.path)
+			.pipe(less().on('error', function(error) {
+				console.log('Deu erro de compilação');
+				console.log(error.message);
+			}))
+			.pipe(gulp.dest('src/css'));
+	});	
 
 	gulp.watch('src/**/*').on('change', browserSync.reload);
 });
