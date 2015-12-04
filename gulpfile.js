@@ -8,7 +8,8 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync'),
   jshint = require('gulp-jshint'),
   csslint = require('gulp-csslint'),
-  jshintSstylish = require('jshint-stylish');
+  jshintSstylish = require('jshint-stylish'),
+  autoprefixer = require('gulp-autoprefixer');
  
 // Tarefa padrão
 gulp.task('default', ['copy'], function() {
@@ -40,7 +41,7 @@ gulp.task('usemin', function() {
 	 return gulp.src('dist/**/*.html')
 		.pipe(usemin({
 			js: [uglify],
-			css: [cssmin]
+			css: [autoprefixer, cssmin]
 		}))
 		.pipe(gulp.dest('dist'));
 });

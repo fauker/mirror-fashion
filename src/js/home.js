@@ -1,3 +1,4 @@
+
 document.getElementById('form-busca').onsubmit = function() {
   if (document.getElementById('q').value === '') {
   	  document.getElementById('form-busca').style.background = 'red';
